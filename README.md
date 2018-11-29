@@ -1,4 +1,4 @@
-#spring-boot-starter-soapui
+#soapui-template
 
 ### Requirements
 ------------
@@ -9,7 +9,7 @@
 ``` xml
 <dependency>
 	<groupId>com.github.vindell</groupId>
-	<artifactId>spring-boot-starter-soapui</artifactId>
+	<artifactId>soapui-template</artifactId>
 	<version>${project.version}</version>
 </dependency>
 ```
@@ -49,6 +49,7 @@
 
 > mvn deploy:deploy-file -DgroupId=com.eviware -DartifactId=soapui -Dversion=5.4.0 -Dpackaging=jar -Dfile=D:\soapui-5.4.0.jar -Durl=${repositoryUrl} -DrepositoryId=${repositoryId}
 
+```java
 com.eviware.soapui.impl.WsdlInterfaceFactory
 com.eviware.soapui.impl.wsdl.support.wsdl.CachedWsdlLoader
 com.eviware.soapui.impl.wsdl.support.wsdl.UrlWsdlLoader
@@ -61,4 +62,4 @@ com.eviware.soapui.support.JsonUtil
 com.eviware.soapui.support.SecurityScanUtil
 
 com.eviware.soapui.support.scripting.SoapUIScriptEngineRegistry
-
+```

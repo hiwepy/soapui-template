@@ -370,7 +370,7 @@
 	<repositories>
 		<repository>
 			<id>smartbear-sweden-plugin-repository</id>
-			<url>http://www.soapui.org/repository/maven2/</url>
+			<url>http://smartbearsoftware.com/repository/maven2/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
