@@ -1,0 +1,7 @@
+soapui:
+  env:
+    name: test
+    settings: 
+      xx : sd 
+  
+    
