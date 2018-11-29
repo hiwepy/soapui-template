@@ -10,7 +10,7 @@
 <dependency>
 	<groupId>com.github.vindell</groupId>
 	<artifactId>soapui-template</artifactId>
-	<version>${project.version}</version>
+	<version>1.0.0.RELEASE</version>
 </dependency>
 ```
 
