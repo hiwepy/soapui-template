@@ -15,6 +15,10 @@
  */
 package com.smartbear.soapui.template;
 
+import java.io.IOException;
+
+import org.junit.Test;
+
 import com.smartbear.soapui.template.wsdl.WsdlInfo;
 import com.smartbear.soapui.template.wsdl.WsdlInterfaceInfo;
 import com.smartbear.soapui.template.wsdl.WsdlOperationInfo;
@@ -25,7 +29,8 @@ import com.smartbear.soapui.template.wsdl.WsdlOperationInfo;
  */
 public class SoapuiWsdl_Test {
 	
-	public static void main(String[] args) throws Exception {
+	@Test
+	public void testWsdl() throws IOException, Exception {
         
 		String wsdlUrl = "http://www.webxml.com.cn/WebServices/WeatherWebService.asmx?wsdl";
 		WsdlInfo wsdlInfo = new WsdlInfo(wsdlUrl);

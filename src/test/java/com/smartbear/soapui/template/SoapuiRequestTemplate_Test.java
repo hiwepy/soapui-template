@@ -32,12 +32,11 @@ public class SoapuiRequestTemplate_Test extends AbstractWsdlTemplate_Test {
 	protected SoapuiRequestTemplate requestTemplate;
 	
 	@Before
-	public void setupRequestTemplate() throws XmlException, IOException, SoapUIException {
+	public void setupRequestTemplate() throws Exception {
 		requestTemplate = new SoapuiRequestTemplate(wsdlTemplate);
 	}
 	
-
-	//@Test
+	@Test
 	public void invokeAt() throws XmlException, IOException, SoapUIException, SubmitException {
 
 		//SoapUI.getSettings().setBoolean(HttpSettings.DISABLE_RESPONSE_DECOMPRESSION, true);

@@ -18,6 +18,7 @@ package com.smartbear.soapui.template;
 import java.io.IOException;
 
 import org.apache.xmlbeans.XmlObject;
+import org.junit.Test;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -30,12 +31,12 @@ import com.eviware.soapui.support.xml.XmlUtils;
  * TODO
  * @author 		： <a href="https://github.com/vindell">vindell</a>
  */
-
 public class SoapuiMessageParse_Test {
 
 	/**
 	 * 多结果
 	 */
+	@Test
 	public void testMultiResult() throws IOException, Exception {
 		
 		String responseContent = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:web=\"http://WebXml.com.cn/\">\r\n" + 
@@ -59,7 +60,7 @@ public class SoapuiMessageParse_Test {
 		// Body
 		//Element body = XmlUtils.getFirstChildElementIgnoreCase(element, "soapenv:Body");
 		Element body = (Element) SoapUtils.getBodyElement(xmlObject, SoapVersion.Soap11).getDomNode();
-		System.out.println(body.getLocalName());
+		System.out.println("LocalName :" + body.getLocalName());
 		//System.out.println(body);
 		
 		// Method Response Elements		
@@ -83,9 +84,9 @@ public class SoapuiMessageParse_Test {
 							
 							XmlUtils.setNodeValue(respNode, "546454");
 							
-							System.out.println(respNode.getNodeName());
-							System.out.println(respNode.getLocalName());
-							System.out.println(respNode.getNodeValue());
+							System.out.println("NodeName :" + respNode.getNodeName());
+							System.out.println("LocalName :" + respNode.getLocalName());
+							System.out.println("NodeValue :" + respNode.getNodeValue());
 							
 						}
 					}
@@ -93,7 +94,6 @@ public class SoapuiMessageParse_Test {
 			}
 		}
 		
-		 
 		System.out.println(XmlUtils.serialize(body.getOwnerDocument()));
 		
 		/*String soapRequestBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:web=\"namespace\"><soapenv:Header/><soapenv:Body><web:method1><web:param1>?</web:param1><web:param2>?</web:param2></web:method1></soapenv:Body></soapenv:Envelope>";
