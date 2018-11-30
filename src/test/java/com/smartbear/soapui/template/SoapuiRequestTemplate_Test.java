@@ -23,12 +23,13 @@ import org.apache.xmlbeans.XmlException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.eviware.soapui.SoapUI;
 import com.eviware.soapui.model.iface.Request.SubmitException;
 import com.eviware.soapui.model.iface.Response;
-import com.eviware.soapui.settings.HttpSettings;
+import com.eviware.soapui.model.settings.Settings;
 import com.eviware.soapui.support.SoapUIException;
 import com.google.common.collect.Maps;
+import com.smartbear.soapui.template.setting.SoapuiSettings;
+import com.smartbear.soapui.template.setting.SoapuiSettingsImpl;
 
 public class SoapuiRequestTemplate_Test extends AbstractWsdlTemplate_Test {
 	
@@ -36,8 +37,18 @@ public class SoapuiRequestTemplate_Test extends AbstractWsdlTemplate_Test {
 	
 	@Before
 	public void setupRequestTemplate() throws Exception {
+		// 替换默认Settings
+		Settings soapuiSettings = new SoapuiSettingsImpl(new SoapuiSettings());
+		/*SoapUICore soapUICore = new DefaultSoapUICore() {
+			@Override
+			public Settings getSettings() {
+				return soapuiSettings;
+			}
+		};
+		SoapUI.setSoapUICore(soapUICore);*/
+		
 		requestTemplate = new SoapuiRequestTemplate(wsdlTemplate);
-		SoapUI.getSettings().setBoolean(HttpSettings.DISABLE_RESPONSE_DECOMPRESSION, false);
+		
 	}
 	
 	//@Test

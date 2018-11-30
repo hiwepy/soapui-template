@@ -71,7 +71,7 @@ public class SoapuiWsdlTemplate {
 					}
 				});
 	}
-
+	
 	public WsdlOperation getOperationAt(String wsdlUrl, int index) throws SoapUIException {
 		WsdlInterface[] wsdlInterfaces = getWsdlInterfaces(wsdlUrl);
 		WsdlOperation operationInst;

@@ -402,23 +402,19 @@
 		<commons-text.version>1.6</commons-text.version>
 		<contiperf.version>2.3.4</contiperf.version>
 		<dom4j.version>2.1.0</dom4j.version>
-		<log4j.version>1.2.14</log4j.version>
 		<fife-common.version>2.6.3</fife-common.version>
-		<guava.version>27.0-jre</guava.version>
-		<groovy.version>2.5.4</groovy.version>
+		<htmlunit.version>2.33</htmlunit.version>
 		<httpclient.version>4.3.6</httpclient.version> <!-- 需要使用低版本httpclient，否则soapui会报异常 -->
 		<httpcore.version>4.4.10</httpcore.version>
+		<guava.version>27.0-jre</guava.version>
+		<groovy.version>2.5.4</groovy.version>
+		<log4j.version>1.2.14</log4j.version>
 		<java.version>1.8</java.version>
 		<javax.activation.version>1.1.1</javax.activation.version>
 		<javax.mail-api.version>1.5.6</javax.mail-api.version>
 		<javax.jms-api.version>2.0.1</javax.jms-api.version>
+		<json-lib.version>2.4</json-lib.version>
 		<junit.version>4.12</junit.version>
-		<reflections.version>0.9.11</reflections.version>
-		<rhino.version>1.7.10</rhino.version>
-		<rsyntaxtextarea.version>2.6.1</rsyntaxtextarea.version>
-		<saxon.version>8.7</saxon.version>
-		<slf4j.version>1.7.25</slf4j.version>
-		<soapui.version>5.4.0</soapui.version>
 		<maven.version>3.0</maven.version>
 		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
 		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
@@ -434,10 +430,18 @@
 		<maven-surefire-plugin.vertsion>2.21.0</maven-surefire-plugin.vertsion>
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
+		<reflections.version>0.9.11</reflections.version>
+		<rhino.version>1.7.10</rhino.version>
+		<rsyntaxtextarea.version>2.6.1</rsyntaxtextarea.version>
+		<saxon.version>8.7</saxon.version>
+		<slf4j.version>1.7.25</slf4j.version>
+		<soapui.version>5.4.0</soapui.version>
 		<wsdl4j.version>1.6.3</wsdl4j.version>
 		<wss4j.version>1.6.19</wss4j.version>
-		<xalan.version>2.7.1</xalan.version>
-		<xmlbeans.version>2.6.0</xmlbeans.version>
+		<xalan.version>2.7.2</xalan.version>
+		<xmlbeans.version>3.0.2</xmlbeans.version>
+		<xmlbeans-xmlpublic.version>2.6.0</xmlbeans-xmlpublic.version>
+		<xmlbeans-xpath.version>2.6.0</xmlbeans-xpath.version>
 	</properties>
 
 	<dependencyManagement>
@@ -449,7 +453,13 @@
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 			</dependency>
-
+			<!-- https://mvnrepository.com/artifact/org.databene/contiperf -->
+			<dependency>
+			    <groupId>org.databene</groupId>
+			    <artifactId>contiperf</artifactId>
+			    <version>${contiperf.version}</version>
+			</dependency>
+						
 			<!-- https://mvnrepository.com/artifact/org.slf4j -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -463,10 +473,11 @@
 				<scope>test</scope>
 			</dependency>
 			
+			<!-- https://github.com/SmartBear/soapui -->
 			<dependency>
-				<groupId>javax.activation</groupId>
-				<artifactId>activation</artifactId>
-				<version>${activation.version}</version>
+				<groupId>com.eviware</groupId>
+				<artifactId>soapui</artifactId>
+				<version>${soapui.version}</version>
 			</dependency>
 			
 			<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
@@ -488,15 +499,16 @@
 				<artifactId>bcprov-ext-jdk15on</artifactId>
 				<version>${bcprov.version}</version>
 			</dependency>
-
-			<!-- https://mvnrepository.com/artifact/org.databene/contiperf -->
-			<dependency>
-				<groupId>org.databene</groupId>
-				<artifactId>contiperf</artifactId>
-				<version>${contiperf.version}</version>
-				<scope>test</scope>
-			</dependency>
 			
+			<!-- Global utils -->
+			
+			<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
 			<dependency>
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils</artifactId>
@@ -545,25 +557,139 @@
 				<version>${commons-not-yet-ssl.version}</version>
 			</dependency>
 	
+			<!-- XML Beans : https://mvnrepository.com/artifact/org.apache.xmlbeans -->
+			<dependency>
+				<groupId>org.apache.xmlbeans</groupId>
+				<artifactId>xmlbeans</artifactId>
+				<version>${xmlbeans.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlbeans</groupId>
+				<artifactId>xmlbeans-xpath</artifactId>
+				<version>${xmlbeans-xpath.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlbeans</groupId>
+				<artifactId>xmlbeans-xmlpublic</artifactId>
+				<version>${xmlbeans-xmlpublic.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.xml.bind</groupId>
+				<artifactId>jsr173_api</artifactId>
+				<version>1.0</version>
+			</dependency>
+			
+			<!-- Logging -->
+
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commons-logging.version}</version>
+			</dependency>
+			
+			<!-- In-app analytics -->
+			<dependency>
+				<groupId>com.smartbear.utils.analytics</groupId>
+				<artifactId>analytics-core</artifactId>
+				<version>${analytics.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.smartbear.utils.analytics</groupId>
+				<artifactId>out-app-analytics-provider</artifactId>
+				<version>${analytics.version}</version>
+			</dependency>
+			
+			<!-- WSS4J -->
+			
+			<!-- https://mvnrepository.com/artifact/org.apache.ws.security/wss4j -->
+			<dependency>
+				<groupId>org.apache.ws.security</groupId>
+				<artifactId>wss4j</artifactId>
+				<version>${wss4j.version}</version>
+			</dependency>
+			
+			<!-- HtmlUnit dependencies -->
+
+	        <!-- https://mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit -->
+			<dependency>
+			    <groupId>net.sourceforge.htmlunit</groupId>
+			    <artifactId>htmlunit</artifactId>
+			    <version>${htmlunit.version}</version>
+			</dependency>
+	        <!-- https://mvnrepository.com/artifact/org.w3c.css/sac -->
+			<dependency>
+			    <groupId>org.w3c.css</groupId>
+			    <artifactId>sac</artifactId>
+			    <version>1.3</version>
+			</dependency>
+	        <!-- https://mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit-core-js -->
+			<dependency>
+			    <groupId>net.sourceforge.htmlunit</groupId>
+			    <artifactId>htmlunit-core-js</artifactId>
+			    <version>${htmlunit.version}</version>
+			</dependency>
+			
+			<!-- HTTP Components -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpmime</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>${httpcore.version}</version>
+			</dependency>
+		
+			<!-- Oauth2 dependencies -->
+	        <dependency>
+	            <groupId>org.apache.oltu.oauth2</groupId>
+	            <artifactId>org.apache.oltu.oauth2.client</artifactId>
+	            <version>0.31</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.oltu.oauth2</groupId>
+	            <artifactId>org.apache.oltu.oauth2.httpclient4</artifactId>
+	            <version>0.31</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>com.google.oauth-client</groupId>
+	            <artifactId>google-oauth-client</artifactId>
+	            <version>1.21.0</version>
+	        </dependency>
+	        
+	        
 			<!-- https://mvnrepository.com/artifact/com.fifesoft.rtext/fife.common -->
 			<dependency>
 				<groupId>com.fifesoft.rtext</groupId>
 				<artifactId>fife.common</artifactId>
 				<version>${fife-common.version}</version>
 			</dependency>
-
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>${guava.version}</version>
-			</dependency>
-			 <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy -->
+			
+			<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy -->
 			<dependency>
 			    <groupId>org.codehaus.groovy</groupId>
 			    <artifactId>groovy</artifactId>
 			    <version>${groovy.version}</version>
 			</dependency>
 			
+			
+			<dependency>
+				<groupId>javax.activation</groupId>
+				<artifactId>activation</artifactId>
+				<version>${activation.version}</version>
+			</dependency>
 			<!-- JavaMail API  -->
 			<dependency>
 				<groupId>javax.mail</groupId>
@@ -576,6 +702,14 @@
 			    <artifactId>javax.jms-api</artifactId>
 			    <version>${javax.jms-api.version}</version>
 			</dependency>
+			
+			<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+			<dependency>
+		        <groupId>net.sf.json-lib</groupId>
+		        <artifactId>json-lib</artifactId>
+		        <version>${json-lib.version}</version>
+		        <classifier>jdk15</classifier>
+		    </dependency>
 						
 			<!-- https://mvnrepository.com/artifact/com.btr/proxy-vole -->
 			<dependency>
@@ -583,14 +717,12 @@
 				<artifactId>proxy-vole</artifactId>
 				<version>20121203</version>
 			</dependency>
-
-			<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
-			<!-- Plugin Framework -->
-			<dependency>
-				<groupId>org.reflections</groupId>
-				<artifactId>reflections</artifactId>
-				<version>${reflections.version}</version>
-			</dependency>
+<!-- https://mvnrepository.com/artifact/com.github.markusbernhardt/proxy-vole -->
+<dependency>
+    <groupId>com.github.markusbernhardt</groupId>
+    <artifactId>proxy-vole</artifactId>
+    <version>1.0.5</version>
+</dependency>
 
 			<!-- https://mvnrepository.com/artifact/org.mozilla/rhino -->
 			<dependency>
@@ -625,117 +757,90 @@
 			    <version>${saxon.version}</version>
 			</dependency>
 			
-			<!-- https://github.com/SmartBear/soapui -->
-			<dependency>
-				<groupId>com.eviware</groupId>
-				<artifactId>soapui</artifactId>
-				<version>${soapui.version}</version>
-			</dependency>
-
+			<!-- https://mvnrepository.com/artifact/wsdl4j/wsdl4j -->
 			<dependency>
 				<groupId>wsdl4j</groupId>
 				<artifactId>wsdl4j</artifactId>
 				<version>${wsdl4j.version}</version>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/org.apache.ws.security/wss4j -->
-			<dependency>
-				<groupId>org.apache.ws.security</groupId>
-				<artifactId>wss4j</artifactId>
-				<version>${wss4j.version}</version>
-			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.ws.commons.util/ws-commons-util -->
 			<dependency>
 				<groupId>org.apache.ws.commons.util</groupId>
 				<artifactId>ws-commons-util</artifactId>
 				<version>1.0.2</version>
 			</dependency>
-
+			
+			<!-- https://mvnrepository.com/artifact/xalan/xalan -->
 			<dependency>
 				<groupId>xalan</groupId>
 				<artifactId>xalan</artifactId>
 				<version>${xalan.version}</version>
 			</dependency>
-
-			<!-- XML Beans : https://mvnrepository.com/artifact/org.apache.xmlbeans -->
+	        
+	        <!-- Plugin Framework -->
+			<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
 			<dependency>
-				<groupId>org.apache.xmlbeans</groupId>
-				<artifactId>xmlbeans</artifactId>
-				<version>${xmlbeans.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.xmlbeans</groupId>
-				<artifactId>xmlbeans-xpath</artifactId>
-				<version>${xmlbeans.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.xmlbeans</groupId>
-				<artifactId>xmlbeans-xmlpublic</artifactId>
-				<version>${xmlbeans.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>javax.xml.bind</groupId>
-				<artifactId>jsr173_api</artifactId>
-				<version>1.0</version>
-			</dependency>
-
-			<!-- Logging -->
-
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>${log4j.version}</version>
-			</dependency>
-			<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
-			<dependency>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-				<version>${commons-logging.version}</version>
-			</dependency>
-
-			<!-- In-app analytics -->
-			<dependency>
-				<groupId>com.smartbear.utils.analytics</groupId>
-				<artifactId>analytics-core</artifactId>
-				<version>${analytics.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.smartbear.utils.analytics</groupId>
-				<artifactId>out-app-analytics-provider</artifactId>
-				<version>${analytics.version}</version>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>${reflections.version}</version>
 			</dependency>
 			
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
-
-		<dependency>
-			<groupId>org.databene</groupId>
-			<artifactId>contiperf</artifactId>
-			<scope>test</scope>
-		</dependency>
+ 
+ 		<!-- Testing -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>org.databene</groupId>
+		    <artifactId>contiperf</artifactId>
+		    <scope>test</scope>
+		</dependency>
 		
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- SoapUI dependencies -->
-
+		<dependency>
+			<groupId>com.eviware</groupId>
+			<artifactId>soapui</artifactId>
+		</dependency>
+		
+		<!-- XML Beans -->
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans-xpath</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>net.sf.saxon</groupId>
+					<artifactId>saxon</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans-xmlpublic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jsr173_api</artifactId>
+		</dependency>
+		
+		<!-- Global utils -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
@@ -760,7 +865,88 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>not-yet-commons-ssl</artifactId>
 		</dependency>
-
+		
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+ 		<dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+        
+		<!-- In-app analytics -->
+		<dependency>
+			<groupId>com.smartbear.utils.analytics</groupId>
+			<artifactId>analytics-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.smartbear.utils.analytics</groupId>
+			<artifactId>out-app-analytics-provider</artifactId>
+		</dependency>
+		
+		<!-- JGoodies -->
+		<dependency>
+			<groupId>com.fifesoft</groupId>
+			<artifactId>rsyntaxtextarea</artifactId>
+		</dependency>
+	    
+		<!-- WSS4J -->
+		<dependency>
+			<groupId>org.apache.ws.security</groupId>
+			<artifactId>wss4j</artifactId>
+		</dependency>
+		
+		<!-- HtmlUnit dependencies 
+		<dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.w3c.css</groupId>
+            <artifactId>sac</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit-core-js</artifactId>
+        </dependency> -->
+        
+		<!-- HTTP Components -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+		</dependency>
+		
+		<!--- Added -->
+		
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.fifesoft.rtext</groupId>
 			<artifactId>fife.common</artifactId>
@@ -769,11 +955,7 @@
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency>
-
+		
 		<!-- https://mvnrepository.com/artifact/javax.activation/activation -->
 		<dependency>
 		    <groupId>javax.activation</groupId>
@@ -798,17 +980,8 @@
 			<groupId>com.btr</groupId>
 			<artifactId>proxy-vole</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fifesoft</groupId>
-			<artifactId>rsyntaxtextarea</artifactId>
-		</dependency>
-
+		
+		<!-- https://mvnrepository.com/artifact/net.sf.saxon/saxon -->
 		<dependency>
 			<groupId>net.sf.saxon</groupId>
 			<artifactId>saxon</artifactId>
@@ -818,103 +991,35 @@
 		    <groupId>net.sf.saxon</groupId>
 		    <artifactId>saxon-dom</artifactId>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/net.sf.saxon/saxon-xpath -->
+		<dependency>
+		    <groupId>net.sf.saxon</groupId>
+		    <artifactId>saxon-xpath</artifactId>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.mozilla/rhino -->
 		<dependency>
 		    <groupId>org.mozilla</groupId>
 		    <artifactId>rhino</artifactId>
 		</dependency>
 		
-		<dependency>
-			<groupId>com.eviware</groupId>
-			<artifactId>soapui</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>wsdl4j</groupId>
 			<artifactId>wsdl4j</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.ws.security</groupId>
-			<artifactId>wss4j</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>xalan</groupId>
-			<artifactId>xalan</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.xmlbeans</groupId>
-			<artifactId>xmlbeans</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.xmlbeans</groupId>
-			<artifactId>xmlbeans-xpath</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>net.sf.saxon</groupId>
-					<artifactId>saxon</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.xmlbeans</groupId>
-			<artifactId>xmlbeans-xmlpublic</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jsr173_api</artifactId>
-		</dependency>
-
-		<!-- Logging -->
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
-
-		<!-- In-app analytics -->
-		<dependency>
-			<groupId>com.smartbear.utils.analytics</groupId>
-			<artifactId>analytics-core</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-log4j12</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>com.smartbear.utils.analytics</groupId>
-			<artifactId>out-app-analytics-provider</artifactId>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
 		<dependency>
 	        <groupId>net.sf.json-lib</groupId>
 	        <artifactId>json-lib</artifactId>
-	        <version>2.4</version>
 	        <classifier>jdk15</classifier>
 	        <scope>compile</scope>
 	    </dependency>
-
-		<!-- HTTP Components -->
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpmime</artifactId>
-			<version>${httpclient.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpcore</artifactId>
-			<version>${httpcore.version}</version>
-		</dependency>
+		
+		<!-- Plugin Framework-->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+        </dependency>
 
 	</dependencies>
 
