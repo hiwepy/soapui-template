@@ -32,7 +32,7 @@ public class SoapuiHttpSettings {
 	/**
 	 * Accept compressed responses from hosts
 	 */
-	private boolean responseCompression = true;
+	private boolean responseCompression = false;
 	/**
 	 * Disable decompression of compressed responses
 	 */

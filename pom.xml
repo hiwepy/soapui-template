@@ -404,7 +404,7 @@
 		<dom4j.version>2.1.0</dom4j.version>
 		<fife-common.version>2.6.3</fife-common.version>
 		<htmlunit.version>2.33</htmlunit.version>
-		<httpclient.version>4.3.6</httpclient.version> <!-- 需要使用低版本httpclient，否则soapui会报异常 -->
+		<httpclient.version>4.5.6</httpclient.version> <!-- 需要使用低版本httpclient，否则soapui会报异常 -->
 		<httpcore.version>4.4.10</httpcore.version>
 		<guava.version>27.0-jre</guava.version>
 		<groovy.version>2.5.4</groovy.version>
@@ -911,6 +911,12 @@
 		<dependency>
 			<groupId>org.apache.ws.security</groupId>
 			<artifactId>wss4j</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.opensaml</groupId>
+					<artifactId>opensaml</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		
 		<!-- HtmlUnit dependencies 
@@ -944,10 +950,6 @@
 		<!--- Added -->
 		
 		<dependency>
-			<groupId>xalan</groupId>
-			<artifactId>xalan</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.fifesoft.rtext</groupId>
 			<artifactId>fife.common</artifactId>
 		</dependency>
@@ -955,7 +957,10 @@
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>com.btr</groupId>
+			<artifactId>proxy-vole</artifactId>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.activation/activation -->
 		<dependency>
 		    <groupId>javax.activation</groupId>
@@ -966,21 +971,18 @@
 		    <groupId>javax.mail</groupId>
 		    <artifactId>javax.mail-api</artifactId>
 		</dependency>
-		<!-- <dependency>
-		    <groupId>com.sun.mail</groupId>
-		    <artifactId>javax.mail</artifactId>
-		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/javax.jms/javax.jms-api -->
 		<dependency>
 		    <groupId>javax.jms</groupId>
 		    <artifactId>javax.jms-api</artifactId>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
 		<dependency>
-			<groupId>com.btr</groupId>
-			<artifactId>proxy-vole</artifactId>
-		</dependency>
-		
+	        <groupId>net.sf.json-lib</groupId>
+	        <artifactId>json-lib</artifactId>
+	        <classifier>jdk15</classifier>
+	        <scope>compile</scope>
+	    </dependency>
 		<!-- https://mvnrepository.com/artifact/net.sf.saxon/saxon -->
 		<dependency>
 			<groupId>net.sf.saxon</groupId>
@@ -1001,19 +1003,14 @@
 		    <groupId>org.mozilla</groupId>
 		    <artifactId>rhino</artifactId>
 		</dependency>
-		
-
 		<dependency>
 			<groupId>wsdl4j</groupId>
 			<artifactId>wsdl4j</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
 		<dependency>
-	        <groupId>net.sf.json-lib</groupId>
-	        <artifactId>json-lib</artifactId>
-	        <classifier>jdk15</classifier>
-	        <scope>compile</scope>
-	    </dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+		</dependency>
 		
 		<!-- Plugin Framework-->
         <dependency>

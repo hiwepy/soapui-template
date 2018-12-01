@@ -17,7 +17,6 @@ package com.smartbear.soapui.template.setting;
 
 import java.io.File;
 
-import com.eviware.soapui.SoapUI;
 import com.eviware.soapui.impl.settings.SettingsImpl;
 import com.eviware.soapui.impl.wsdl.support.http.HttpClientSupport;
 import com.eviware.soapui.model.project.Project;
@@ -34,6 +33,7 @@ import com.eviware.soapui.support.types.StringList;
 
 public class SoapuiSettingsImpl extends SettingsImpl {
 
+	protected Settings parent;
 	public SoapuiSettingsImpl() {
 		super();
 		HttpClientSupport.addSSLListener(this);
@@ -41,10 +41,12 @@ public class SoapuiSettingsImpl extends SettingsImpl {
 
 	public SoapuiSettingsImpl(Settings parent) {
 		super(parent);
-		 HttpClientSupport.addSSLListener(this);
+		this.parent = parent;
+		HttpClientSupport.addSSLListener(this);
 	}
 	
-	public SoapuiSettingsImpl(SoapuiSettings settings) {
+	public SoapuiSettingsImpl(SoapuiSettings settings, Settings parent) {
+		this.parent = parent;
 		this.setProjectSettings(settings.getProject());
 		this.setHttpSettings(settings.getHttp());
 		this.setProxySettings(settings.getProxy());
@@ -54,7 +56,6 @@ public class SoapuiSettingsImpl extends SettingsImpl {
 		this.setWsiSettings(settings.getWsi());
 		HttpClientSupport.addSSLListener(this);
 	}
-	
 	
 	protected void defaultProjectSettings() {
 		setIfNotSet(ProjectSettings.PROJECT_ROOT, null);
@@ -146,9 +147,8 @@ public class SoapuiSettingsImpl extends SettingsImpl {
 		if(httpSettings != null) {
 			
 			if (this.getString(HttpSettings.HTTP_VERSION, HttpSettings.HTTP_VERSION_1_1).equals(HttpSettings.HTTP_VERSION_0_9)) {
-	        	this.setString(HttpSettings.HTTP_VERSION, HttpSettings.HTTP_VERSION_1_1);
+	        	this.setString(HttpSettings.HTTP_VERSION, httpSettings.getHttpVersion().version());
 	        }
-	        setIfNotSet(HttpSettings.HTTP_VERSION, httpSettings.getHttpVersion().version());
 	        setIfNotSet(HttpSettings.USER_AGENT, httpSettings.getUseragent());
 	        setIfNotSet(HttpSettings.REQUEST_COMPRESSION, httpSettings.getRequestCompression().alg());
 	        setIfNotSet(HttpSettings.RESPONSE_COMPRESSION, httpSettings.isResponseCompression());
@@ -273,7 +273,7 @@ public class SoapuiSettingsImpl extends SettingsImpl {
 	
     private void setIfNotSet(String id, boolean value) {
         if (!this.isSet(id)) {
-        	this.setBoolean(id, true);
+        	this.setBoolean(id, value);
         }
     }
 
@@ -292,19 +292,25 @@ public class SoapuiSettingsImpl extends SettingsImpl {
     @Override
     public void setBoolean(String id, boolean value) {
     	super.setBoolean(id, value);
-    	SoapUI.getSettings().setBoolean(id, value);
+    	if(this.parent != null) {
+    		this.parent.setBoolean(id, value);
+    	}
     }
     
     @Override
     public void setString(String id, String value) {
     	super.setString(id, value);
-    	SoapUI.getSettings().setString(id, value);
+    	if(this.parent != null) {
+    		this.parent.setString(id, value);
+    	}
     }
     
     @Override
     public void setLong(String id, long value) {
     	super.setLong(id, value);
-    	SoapUI.getSettings().setLong(id, value);
+    	if(this.parent != null) {
+    		this.parent.setLong(id, value);
+    	}
     }
 	
 }
