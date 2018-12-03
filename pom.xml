@@ -794,7 +794,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<scope>test</scope>
+			<scope>runtime</scope> <!-- soapui运行期间依赖这个包 -->
 		</dependency>
 		<dependency>
 		    <groupId>org.databene</groupId>
