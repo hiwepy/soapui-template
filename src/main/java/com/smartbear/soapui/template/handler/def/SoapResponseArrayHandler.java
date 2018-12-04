@@ -2,7 +2,6 @@
 
 import org.apache.xmlbeans.XmlException;
 
-import com.eviware.soapui.impl.wsdl.WsdlOperation;
 import com.eviware.soapui.impl.wsdl.support.soap.SoapUtils;
 import com.eviware.soapui.impl.wsdl.support.soap.SoapVersion;
 import com.eviware.soapui.model.iface.Response;
@@ -17,7 +16,7 @@ import com.smartbear.soapui.template.utils.SoapuiResponseUtils;
 public class SoapResponseArrayHandler implements SoapResponseHandler<String[]> {
  
 	@Override
-	public String[] handleResponse(WsdlOperation operationInst, Response response) throws SoapUIException {
+	public String[] handleResponse(Response response, SoapVersion version) throws SoapUIException {
 		// 响应内容
 		String responseContent = response.getContentAsString();
 		try {
@@ -28,8 +27,7 @@ public class SoapResponseArrayHandler implements SoapResponseHandler<String[]> {
 			e.printStackTrace();
 		}
 		
-		SoapVersion soapVersion = operationInst.getInterface().getSoapVersion();
-		return SoapuiResponseUtils.parseResponseToArray(responseContent, soapVersion);
+		return SoapuiResponseUtils.parseResponseToArray(responseContent, version);
 	}
 	
 }

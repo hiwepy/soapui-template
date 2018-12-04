@@ -24,8 +24,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.eviware.soapui.SoapUI;
+import com.eviware.soapui.impl.wsdl.WsdlRequest;
 import com.eviware.soapui.model.iface.Request.SubmitException;
-import com.eviware.soapui.model.iface.Response;
 import com.eviware.soapui.support.SoapUIException;
 import com.google.common.collect.Maps;
 import com.smartbear.soapui.template.setting.SoapuiSettings;
@@ -33,13 +33,13 @@ import com.smartbear.soapui.template.setting.SoapuiSettingsImpl;
 
 public class SoapuiRequestTemplate_Test extends AbstractWsdlTemplate_Test {
 	
-	protected SoapuiRequestTemplate requestTemplate;
+	protected SoapuiWsdlRequestTemplate requestTemplate;
 	
 	@Before
 	public void setupRequestTemplate() throws Exception {
 		// 替换默认Settings
 		new SoapuiSettingsImpl(new SoapuiSettings(), SoapUI.getSettings());
-		requestTemplate = new SoapuiRequestTemplate(wsdlTemplate);
+		requestTemplate = new SoapuiWsdlRequestTemplate(wsdlTemplate);
 	}
 	
 	//@Test
@@ -53,12 +53,11 @@ public class SoapuiRequestTemplate_Test extends AbstractWsdlTemplate_Test {
 		
 		params.put("theIpAddress",  "221.110.10.14");
 		
-		Response response = requestTemplate.invokeAt(wsdlUrl, 1, params);
+		SoapuiResponse<WsdlRequest> response = requestTemplate.invokeAt(wsdlUrl, 1, params);
 		
-		System.out.println(response.getResponseHeaders());
+		System.out.println(response.getResponse().getResponseHeaders());
 		
-		System.out.println(response.getContentAsString());
-		
+		System.out.println(response.getResponse().getContentAsString());
 		
 	}
 	
@@ -72,11 +71,11 @@ public class SoapuiRequestTemplate_Test extends AbstractWsdlTemplate_Test {
 		//Map<String, Object> params = Maps.newHashMap();
 		//params.put("theIpAddress",  "221.110.10.14");
 		
-		Response response = requestTemplate.invokeByName(wsdlUrl, "getCountryCityByIp", "221.110.10.14");
+		SoapuiResponse<WsdlRequest> response = requestTemplate.invokeByName(wsdlUrl, "getCountryCityByIp", new String[] {"221.110.10.14"});
 		
-		System.out.println(response.getResponseHeaders());
+		System.out.println(response.getResponse().getResponseHeaders());
 		
-		System.out.println(response.getContentAsString());
+		System.out.println(response.getResponse().getContentAsString());
 		
 	}
 	
@@ -93,11 +92,11 @@ public class SoapuiRequestTemplate_Test extends AbstractWsdlTemplate_Test {
 		Map<String, Object> requestParams = new HashMap<>();
 		requestParams.put("mobileCode", "13735893463");
 		
-		Response response = requestTemplate.invokeByName(wsdlUrl, "getMobileCodeInfo", requestParams);
+		SoapuiResponse<WsdlRequest> response = requestTemplate.invokeByName(wsdlUrl, "getMobileCodeInfo", requestParams);
 		
-		System.out.println(response.getResponseHeaders());
+		System.out.println(response.getResponse().getResponseHeaders());
 		
-		System.out.println(response.getContentAsString());
+		System.out.println(response.getResponse().getContentAsString());
 		
 	}
 	

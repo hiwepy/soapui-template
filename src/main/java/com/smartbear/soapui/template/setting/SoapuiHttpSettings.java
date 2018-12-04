@@ -15,6 +15,8 @@
  */
 package com.smartbear.soapui.template.setting;
 
+import com.eviware.soapui.support.types.StringToStringsMap;
+
 public class SoapuiHttpSettings {
 
 	/**
@@ -102,7 +104,32 @@ public class SoapuiHttpSettings {
 	 * Start REST MockService after creation
 	 */
 	private boolean startMockService = false;
-
+	/** */
+	private boolean removeEmptyContent = false;
+	/** */
+	private boolean stripWhitespaces = false;
+	/** */
+	private boolean disableMultipartAttachments = true;
+	/** */
+	private String dumpFile;
+	/** */
+	private boolean followRedirects = true;
+	/** */
+	private StringToStringsMap requestHeaders = new StringToStringsMap();
+	
+	/** */
+	private boolean encodeAttachments = false;
+	/** */
+	private boolean inlineResponseAttachments = false;
+	/** */
+	private boolean expandMtomResponseAttachments = false;
+	/** */
+	private boolean forceMtom = false;
+	/** */
+	private boolean inlineFilesEnabled = false;
+	/** */
+	private boolean skipSoapAction = false;
+	
 	public SoapuiHttpVersion getHttpVersion() {
 		return httpVersion;
 	}
@@ -271,4 +298,100 @@ public class SoapuiHttpSettings {
 		this.startMockService = startMockService;
 	}
 
+	public boolean isRemoveEmptyContent() {
+		return removeEmptyContent;
+	}
+
+	public void setRemoveEmptyContent(boolean removeEmptyContent) {
+		this.removeEmptyContent = removeEmptyContent;
+	}
+
+	public boolean isStripWhitespaces() {
+		return stripWhitespaces;
+	}
+
+	public void setStripWhitespaces(boolean stripWhitespaces) {
+		this.stripWhitespaces = stripWhitespaces;
+	}
+
+	public boolean isDisableMultipartAttachments() {
+		return disableMultipartAttachments;
+	}
+
+	public void setDisableMultipartAttachments(boolean disableMultipartAttachments) {
+		this.disableMultipartAttachments = disableMultipartAttachments;
+	}
+
+	public String getDumpFile() {
+		return dumpFile;
+	}
+
+	public void setDumpFile(String dumpFile) {
+		this.dumpFile = dumpFile;
+	}
+
+	public boolean isFollowRedirects() {
+		return followRedirects;
+	}
+
+	public void setFollowRedirects(boolean followRedirects) {
+		this.followRedirects = followRedirects;
+	}
+
+	public StringToStringsMap getRequestHeaders() {
+		return requestHeaders;
+	}
+
+	public void setRequestHeaders(StringToStringsMap requestHeaders) {
+		this.requestHeaders = requestHeaders;
+	}
+
+	public boolean isEncodeAttachments() {
+		return encodeAttachments;
+	}
+
+	public void setEncodeAttachments(boolean encodeAttachments) {
+		this.encodeAttachments = encodeAttachments;
+	}
+
+	public boolean isInlineResponseAttachments() {
+		return inlineResponseAttachments;
+	}
+
+	public void setInlineResponseAttachments(boolean inlineResponseAttachments) {
+		this.inlineResponseAttachments = inlineResponseAttachments;
+	}
+
+	public boolean isExpandMtomResponseAttachments() {
+		return expandMtomResponseAttachments;
+	}
+
+	public void setExpandMtomResponseAttachments(boolean expandMtomResponseAttachments) {
+		this.expandMtomResponseAttachments = expandMtomResponseAttachments;
+	}
+
+	public boolean isForceMtom() {
+		return forceMtom;
+	}
+
+	public void setForceMtom(boolean forceMtom) {
+		this.forceMtom = forceMtom;
+	}
+
+	public boolean isInlineFilesEnabled() {
+		return inlineFilesEnabled;
+	}
+
+	public void setInlineFilesEnabled(boolean inlineFilesEnabled) {
+		this.inlineFilesEnabled = inlineFilesEnabled;
+	}
+
+	public boolean isSkipSoapAction() {
+		return skipSoapAction;
+	}
+
+	public void setSkipSoapAction(boolean skipSoapAction) {
+		this.skipSoapAction = skipSoapAction;
+	}
+	
 }

@@ -18,6 +18,7 @@ package com.smartbear.soapui.template.setting;
 import java.io.File;
 
 import com.eviware.soapui.impl.settings.SettingsImpl;
+import com.eviware.soapui.impl.wsdl.WsdlRequest;
 import com.eviware.soapui.impl.wsdl.support.http.HttpClientSupport;
 import com.eviware.soapui.model.project.Project;
 import com.eviware.soapui.model.settings.Settings;
@@ -160,6 +161,23 @@ public class SoapuiSettingsImpl extends SettingsImpl {
 	        setIfNotSet(HttpSettings.ENCODED_URLS, httpSettings.isEncodedUrls());
 	        setIfNotSet(HttpSettings.FORWARD_SLASHES, httpSettings.isForwardSlashes());
 	        setIfNotSet(HttpSettings.BIND_ADDRESS, httpSettings.getBindAddress());
+	        
+	        setIfNotSet(WsdlRequest.REMOVE_EMPTY_CONTENT, httpSettings.isRemoveEmptyContent());
+	        setIfNotSet(WsdlRequest.STRIP_WHITESPACES, httpSettings.isStripWhitespaces());
+	        setIfNotSet(WsdlRequest.REQUEST_HEADERS_PROPERTY, httpSettings.getRequestHeaders().toXml());
+	        setIfNotSet(WsdlRequest.BIND_ADDRESS, httpSettings.getBindAddress());
+	        setIfNotSet(WsdlRequest.DISABLE_MULTIPART_ATTACHMENTS, httpSettings.isDisableMultipartAttachments());
+	        setIfNotSet(WsdlRequest.DUMP_FILE, httpSettings.getDumpFile());
+	        setIfNotSet(WsdlRequest.MAX_SIZE, httpSettings.getMaxResponseSize());
+	        setIfNotSet(WsdlRequest.FOLLOW_REDIRECTS, httpSettings.isFollowRedirects());
+	        setIfNotSet(WsdlRequest.BIND_ADDRESS, httpSettings.getBindAddress());
+	        
+	        setIfNotSet(WsdlRequest.INLINE_RESPONSE_ATTACHMENTS, httpSettings.isInlineResponseAttachments());
+	        setIfNotSet(WsdlRequest.EXPAND_MTOM_RESPONSE_ATTACHMENTS, httpSettings.isExpandMtomResponseAttachments());
+	        setIfNotSet(WsdlRequest.FORCE_MTOM, httpSettings.isForceMtom());
+	        setIfNotSet(WsdlRequest.ENABLE_INLINE_FILES, httpSettings.isEncodeAttachments());
+	        setIfNotSet(WsdlRequest.SKIP_SOAP_ACTION, httpSettings.isSkipSoapAction());
+	        
 	        setIfNotSet(HttpSettings.INCLUDE_REQUEST_IN_TIME_TAKEN, httpSettings.isIncludeRequestInTimeTaken());
 	        setIfNotSet(HttpSettings.INCLUDE_RESPONSE_IN_TIME_TAKEN, httpSettings.isIncludeResponseInTimeTaken());
 	        setIfNotSet(HttpSettings.SOCKET_TIMEOUT, httpSettings.getSocketTimeout());
