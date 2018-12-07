@@ -84,7 +84,7 @@ public class SoapuiWsdlRequestTemplate {
 
 		// wait for the response
 		return new SoapuiResponse<WsdlRequest>(submit.getRequest(), submit.getResponse(),
-				async ? submit.getStatus() : submit.waitUntilFinished(), submit.getError());
+				async ? submit.waitUntilFinished() : submit.getStatus(), submit.getError());
 
 	}
 
@@ -127,7 +127,7 @@ public class SoapuiWsdlRequestTemplate {
 
 		// wait for the response
 		return new SoapuiResponse<WsdlRequest>(submit.getRequest(), submit.getResponse(),
-				async ? submit.getStatus() : submit.waitUntilFinished(), submit.getError());
+				async ? submit.waitUntilFinished() : submit.getStatus(), submit.getError());
 
 	}
 
@@ -168,7 +168,7 @@ public class SoapuiWsdlRequestTemplate {
 		
 		// wait for the response
 		return new SoapuiResponse<WsdlRequest>(submit.getRequest(), submit.getResponse(),
-				async ? submit.getStatus() : submit.waitUntilFinished(), submit.getError());
+				async ? submit.waitUntilFinished() : submit.getStatus(), submit.getError());
 
 	}
 
@@ -211,7 +211,7 @@ public class SoapuiWsdlRequestTemplate {
 
 		// wait for the response
 		return new SoapuiResponse<WsdlRequest>(submit.getRequest(), submit.getResponse(),
-				async ? submit.getStatus() : submit.waitUntilFinished(), submit.getError());
+				async ? submit.waitUntilFinished() : submit.getStatus(), submit.getError());
 
 	}
 
