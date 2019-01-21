@@ -10,7 +10,7 @@ https://www.soapui.org
 <dependency>
 	<groupId>com.github.vindell</groupId>
 	<artifactId>soapui-template</artifactId>
-	<version>${project.version}</version>
+	<version>1.0.1.RELEASE</version>
 </dependency>
 ```
 
