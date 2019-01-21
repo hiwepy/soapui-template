@@ -432,7 +432,7 @@
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
 		<reflections.version>0.9.11</reflections.version>
 		<rhino.version>1.7.10</rhino.version>
-		<rsyntaxtextarea.version>2.6.1</rsyntaxtextarea.version>
+		<rsyntaxtextarea.version>3.0.2</rsyntaxtextarea.version>
 		<saxon.version>8.7</saxon.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<soapui.version>5.4.0</soapui.version>
