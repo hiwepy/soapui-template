@@ -7,7 +7,7 @@ import com.smartbear.soapui.template.handler.SoapResponseHandler;
 
 /**
  * 请求响应处理：返回String对象
- * @author 		： <a href="https://github.com/vindell">vindell</a>
+ * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
  */
 public class SoapPlaintextResponseHandler implements SoapResponseHandler<String> {
  
