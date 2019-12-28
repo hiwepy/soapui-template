@@ -8,7 +8,7 @@ https://www.soapui.org
 
 ``` xml
 <dependency>
-	<groupId>com.github.vindell</groupId>
+	<groupId>com.github.hiwepy</groupId>
 	<artifactId>soapui-template</artifactId>
 	<version>${project.version}</version>
 </dependency>
