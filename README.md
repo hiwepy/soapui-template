@@ -1,5 +1,7 @@
 #soapui-template
+
 https://www.soapui.org
+
 ### Requirements
 ------------
 **[SoapUI](https://github.com/SmartBear/soapui) must be installed on your Maven Repository.**
@@ -48,6 +50,9 @@ https://www.soapui.org
 ####Step 4 ：Deploy To Nexus Maven Repository
 
 > mvn deploy:deploy-file -DgroupId=com.eviware -DartifactId=soapui -Dversion=5.4.0 -Dpackaging=jar -Dfile=D:\soapui-5.4.0.jar -Durl=${repositoryUrl} -DrepositoryId=${repositoryId}
+mvn deploy:deploy-file -DgroupId=com.eviware -DartifactId=soapui -Dversion=5.4.0 -Dpackaging=jar -Dfile=D:\soapui-5.4.0-sources.jar -Dclassifier=sources -Durl=${repositoryUrl} -DrepositoryId=${repositoryId}
+mvn deploy:deploy-file -DgroupId=com.smartbear.utils.analytics -DartifactId=analytics-core -Dversion=5.4.0 -Dpackaging=jar -Dfile=D:\analytics-core-5.4.0.jar -Durl=${repositoryUrl} -DrepositoryId=${repositoryId}
+mvn deploy:deploy-file -DgroupId=com.smartbear.utils.analytics -DartifactId=out-app-analytics-provider -Dversion=5.4.0 -Dpackaging=jar -Dfile=D:\out-app-analytics-provider-5.4.0.jar -Durl=${repositoryUrl} -DrepositoryId=${repositoryId}
 
 ```java
 com.eviware.soapui.impl.WsdlInterfaceFactory
